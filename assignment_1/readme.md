@@ -22,9 +22,13 @@ executing your robots manoeuvres and collect all sensor/actuator messages record
 of trial and error coding can be made.
 (remember to run roscore on a seperate terminal).
 First create a virtual static transformation, this will be helpful in plotting the data
-`rosrun tf static_transform_publisher 0 0 0 0 0 0 0 odom base_footprint 10`
+```
+rosrun tf static_transform_publisher 0 0 0 0 0 0 0 odom base_footprint 10
+```
 Now, run the ROSBag, which was explained in the previous assignment, and pause it
-`rosbag play ./data/tbot_lidar_loop.bag`
+```
+rosbag play ./data/tbot_lidar_loop.bag
+```
 Subscribe for the data using a simple ROS subscriber using code contained in ./code :
 The code is well commented
 
