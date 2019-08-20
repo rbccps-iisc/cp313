@@ -1,4 +1,5 @@
-# Use the given ROSBag file for a turtlebot executing a loop to obtain its 2D odometry
+# Lab Assignment 1: Use the given ROSBag file for a turtlebot executing a loop to obtain its 2D odometry
+# Due Aug 27, 2019
 
 Note: Please use python2 for this exercise. You will additionally
 Link: https://github.com/rbccps-iisc/cp313/tree/master/assignment_1
