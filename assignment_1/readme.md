@@ -7,10 +7,10 @@ Note: Please use python2 for this exercise.
 
 ## Instructions
 The ROSBag (in ./data) contains the following essential ROS topic sensor streams which also can be
-found by running the command rostopic list:
-1. /odom Wheel odometry ![equation](https://latex.codecogs.com/png.latex?2D%20%5C%20%28x%2C%20y%2C%20%5Ctheta%29)
-2. /odom_rf2o Lidar odometry ![equation](https://latex.codecogs.com/png.latex?2D%20%5C%20%28x%2C%20y%2C%20%5Ctheta%29)
-3. /imu 9DOF imu data ![equation](https://latex.codecogs.com/png.latex?%28a_x%2C%20a_y%2C%20a_z%2C%20%5Cdot%7B%5Ctheta_x%7D%2C%20%5Cdot%7B%5Ctheta_y%7D%2C%20%5Cdot%7B%5Ctheta_z%7D%2C%20%5Ctheta_x%2C%20%5Ctheta_y%2C%20%5Ctheta_z%29)
+found by running the command rostopic list\:
+1. \/odom Wheel odometry ![equation](https://latex.codecogs.com/png.latex?2D%20%5C%20%28x%2C%20y%2C%20%5Ctheta%29)
+2. \/odom_rf2o Lidar odometry ![equation](https://latex.codecogs.com/png.latex?2D%20%5C%20%28x%2C%20y%2C%20%5Ctheta%29)
+3. \/imu 9DOF imu data ![equation](https://latex.codecogs.com/png.latex?%28a_x%2C%20a_y%2C%20a_z%2C%20%5Cdot%7B%5Ctheta_x%7D%2C%20%5Cdot%7B%5Ctheta_y%7D%2C%20%5Cdot%7B%5Ctheta_z%7D%2C%20%5Ctheta_x%2C%20%5Ctheta_y%2C%20%5Ctheta_z%29)
 
 You can perform rostopic echo <topic_name> to display the sensor output
 Wheel odometry is the most accurate amongst these for the scenario in which the data was
@@ -34,14 +34,14 @@ Subscribe for the data using a simple ROS subscriber. Use code contained in ./co
 The code is well commented.
 
 ## Assignment
-1. Plot live /odom and /odom_rf2o on rViz. (Instructions for plotting data on rViz can be found online and is part of the assignment.)
+1. Plot live \/odom and \/odom_rf2o on rViz. (Instructions for plotting data on rViz can be found online and is part of the assignment.)
 2. Use the utilities provided by ROS to obtain a time freeze (complete data) from the ROSBag and plot the same using matplotlib.
 3. Considering the above, perform dead reckoning, i.e., 2-D position and pose (x,y,$\theta$) estimation, using just the IMU data. Compare with wheel odometry (use matplotlib).
 4. More tasks will be added later.
 
 ## Submission Format
-1. Folder name should be assignment_1_<your_name> and should contain folders /code /figures and report.pdf.
-2. Put your code in /code and the figures should be saved in /figures.
+1. Folder name should be assignment_1_\<your_name\> and should contain folders /code /figures and report.pdf.
+2. Put your code in \/code and the figures should be saved in \/figures.
 3. Make a simple one-page report and store the pdf as report.pdf.
 4. Submissions should be made on Piazza. Send the zip file of the assignment folder.
 
