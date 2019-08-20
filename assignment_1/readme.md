@@ -7,9 +7,9 @@ Link: https://github.com/rbccps-iisc/cp313/tree/master/assignment_1
 ## Instruction
 The ROSBag (contained in ./data) contains the following essential ROS topic sensor streams which also can be
 found by running the command rostopic list:
-1. /odom Wheel odometry ![equation](https://latex.codecogs.com/gif.latex?%282D%20%28x%2C%20y%2C%20%5Ctheta%29%29)
-2. /odom_rf2o Lidar odometry (2D (x,y,$\theta$))
-3. /imu 9DOF imu data (ax,ay,az,$\theta$𝑥̇ ,$\theta$𝑦̇ ,$\theta$𝑧̇ ,$\theta$𝑥,$\theta$𝑦,$\theta$𝑧)
+1. /odom Wheel odometry ![equation](https://latex.codecogs.com/gif.latex?2D%20%5C%20%28x%2C%20y%2C%20%5Ctheta%29)
+2. /odom_rf2o Lidar odometry ![equation](https://latex.codecogs.com/gif.latex?2D%20%5C%20%28x%2C%20y%2C%20%5Ctheta%29)
+3. /imu 9DOF imu data ![equation](https://latex.codecogs.com/gif.latex?%28a_x%2C%20a_y%2C%20a_z%2C%20%5Cdot%7B%5Ctheta_x%7D%2C%20%5Cdot%7B%5Ctheta_y%7D%2C%20%5Cdot%7B%5Ctheta_z%7D%2C%20%5Ctheta_x%2C%20%5Ctheta_y%2C%20%5Ctheta_z%29)
 
 You can perform rostopic echo <topic_name> to display the sensor output
 Wheel odometry is the most accurate amongst these for the scenario in which the data was
