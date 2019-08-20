@@ -36,7 +36,7 @@ The code is well commented.
 ## Assignment
 1. Plot live \/odom and \/odom_rf2o on rViz. (Instructions for plotting data on rViz can be found online and is part of the assignment.)
 2. Use the utilities provided by ROS to obtain a time freeze (complete data) from the ROSBag and plot the same using matplotlib.
-3. Considering the above, perform dead reckoning, i.e., 2-D position and pose (x,y,$\theta$) estimation, using just the IMU data. Compare with wheel odometry (use matplotlib).
+3. Considering the above, perform dead reckoning, i.e., 2-D position and pose ![equation](https://latex.codecogs.com/png.latex?2D%20%5C%20%28x%2C%20y%2C%20%5Ctheta%29) estimation, using just the IMU data. Compare with wheel odometry (use matplotlib).
 4. More tasks will be added later.
 
 ## Submission Format
