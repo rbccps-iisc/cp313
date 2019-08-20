@@ -15,8 +15,16 @@ You can perform rostopic echo <topic_name> to display the sensor output
 Wheel odometry is the most accurate amongst these for the scenario in which the data was
 generated. Lidar odometry tends to be noisy and the values it produces are not very reliable.
 Subscribing to the IMU topic provides no odometry.
-First, run the ROSBag, which was explained in the previous assignment, and pause it
-(remember to run roscore as well).
+
+### Running the ROSBag file 
+ROSBag is ROS's way of recording and storing data in a compressed form. You can create a ROSBag of sensor/actuator message recordings while 
+executing your robots manoeuvres and collect all sensor/actuator messages recordings. Replaying this bag will be similar to running the real robot and multiple iterations 
+of trial and error coding can be made.
+(remember to run roscore on a seperate terminal).
+First create a virtual static transformation, this will be helpful in plotting the data
+`rosrun tf static_transform_publisher 0 0 0 0 0 0 0 odom base_footprint 10`
+Now, run the ROSBag, which was explained in the previous assignment, and pause it
+`rosbag play ./data/tbot_lidar_loop.bag`
 Subscribe for the data using a simple ROS subscriber using code contained in ./code :
 The code is well commented
 
