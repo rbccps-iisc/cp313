@@ -14,7 +14,7 @@ found by running the command rostopic list:
 You can perform rostopic echo <topic_name> to display the sensor output
 Wheel odometry is the most accurate amongst these for the scenario in which the data was
 generated. Lidar odometry tends to be noisy and the values it produces are not very reliable.
-Subscribing to the IMU topic provides no odometry.
+Subscribing to the IMU topic provides IMU data.
 
 ### Running the ROSBag file 
 ROSBag is ROS's way of recording and storing data in a compressed form. You can create a ROSBag of sensor/actuator message recordings while 
@@ -25,7 +25,7 @@ First create a virtual static transformation, this will be helpful in plotting t
 ```
 rosrun tf static_transform_publisher 0 0 0 0 0 0 0 odom base_footprint 10
 ```
-Now, run the ROSBag, which was explained in the previous assignment, and pause it
+Now, run the ROSBag, and pause it.
 ```
 rosbag play ./data/tbot_lidar_loop.bag
 ```
@@ -35,7 +35,8 @@ The code is well commented.
 ## Assignment
 1. Plot live /odom and /odom_rf2o on rViz. (Instructions for plotting data on rViz can be found online and is part of the assignment.)
 2. Use the utilities provided by ROS to obtain a time freeze (complete data) from the ROSBag and plot the same using matplotlib.
-3. Considering the above, perform dead reckoning, i.e., 2-D position and pose (x,y,$\theta$) estimation, using just the IMU data. Compare with IMU (use matplotlib).
+3. Considering the above, perform dead reckoning, i.e., 2-D position and pose (x,y,$\theta$) estimation, using just the IMU data. Compare with wheel odometry (use matplotlib).
+4. More tasks will be added later.
 
 ## Submission Format
 1. Folder name should be assignment_1_<your_name> and should contain folders /code /figures and report.pdf.
