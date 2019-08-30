@@ -1,21 +1,58 @@
-# Lab Assignment 1: Use the given ROSBag file for a turtlebot executing a loop to obtain its 2D odometry
+# Lab Assignment 2: Use the extended kalman filter to estimate the position of the Turtlebot from noisy sensor input and noisy beacon measrements
 ### Due Aug 27, 2019
-### Assignment Link : https://github.com/rbccps-iisc/cp313/tree/master/assignment_1
+### Assignment Link : https://github.com/rbccps-iisc/cp313/tree/master/assignment_2
 
 Note: Please use python2 for this exercise.
 
+## Introduction
+The folder turtlebot_kalman contains a ros package (rospkg) which when launched opens gazebo with the turtlebot and a Radio-Frequency Beacon initialized.
+The turtlebot initially moves in fixed circle and occassionally approaches the beacon. 
+The turtle bot has a velocity estimating sensor (wheel encoder) which determines its velocity to an extent (with noise). The actual trajectory of the turtlebot is known.
+You are to estimate the position of the turtlebot as it executes this trajectory. Your estimate of the trajectory based only on velocity sensor will be noisy leading to
+a drift in the position estimae over time. You must correct for this drift using the measurements from the beacon. The beacon gives you 
+1. rho, the radial distance between the beacon and the turtlebot
+2. phi, the angle between turtlebot heading and line joining turtlebot and beacon, 
+
+
+
+
+## Assignment
+1. Formulate the motion model of the turtlebot (Newtonian motion model). The model must convert sensor inputs [local frame] (vx, w) the line  to global position state variable (x,y,theta)
+2. Formulate the measuement model of the beacon. The model must convert measurement of the turtlebot w.r.t the beacon (rho, phi) to the state variable of the turtlebot (x,y,theta)
+3. Use an extended kalman filter to fuse these measurements and provide a better estimate of the state variable (x,y,theta).
+4. Compare it with ground truth (rostopic "/odom")
+
+
+## Assumptions 
+1. Assignment 1 is completed
+2. You are able to control the turtlebot in gazebo from a ROS python code
+3. You have a catkin_ws (workspace) in /home/<user-name>/catkin_ws
+
+##  Installation instructions
+1. From this folder, copy the folder turtlebot_kalman to the src folder of your catkin workspace
+```
+cp -r turtlebot_kalman ~/catkin_ws/src/
+```
+2. catkin_make the package using the command 
+```
+cd ~/catkin_ws/
+catkin_make --only-pkg-with-deps turtlebot_kalman
+catkin_make --only-pkg-with-deps turtlebot_kalman install
+source devel/setup.bash
+```
+3. You should now be able to run this package by 
+```
+roslaunch turtlebot_kalman turtlebot_beacon.launch
+```
 
 ## Instructions
-The ROSBag (in ./data) contains the following essential ROS topic sensor streams which also can be
-found by running the command rostopic list\:
-1. \/odom Wheel odometry ![equation](https://latex.codecogs.com/png.latex?2D%20%5C%20%28x%2C%20y%2C%20%5Ctheta%29)
-2. \/odom_rf2o Lidar odometry ![equation](https://latex.codecogs.com/png.latex?2D%20%5C%20%28x%2C%20y%2C%20%5Ctheta%29)
-3. \/imu 9DOF imu data ![equation](https://latex.codecogs.com/png.latex?%28a_x%2C%20a_y%2C%20a_z%2C%20%5Cdot%7B%5Ctheta_x%7D%2C%20%5Cdot%7B%5Ctheta_y%7D%2C%20%5Cdot%7B%5Ctheta_z%7D%2C%20%5Ctheta_x%2C%20%5Ctheta_y%2C%20%5Ctheta_z%29)
+1. Inputs -
+	a. (vx, w) - turtlebot local frame (linear velocity, counter-clockwise angular velocity). Subscribe to /noisy_vel.
+	b. Ground truth for global position and angle (x,y,Q). Q is a rotationary quaternion. You may use an inbuilt function (see src/beacon.py) to convert this to euler angle. Alternatively, 
+		since this is only used for plotting, you may plot it using rviz.  Subscribe to /odom. 
+	c. Beacon is at position (2,2) and provides all angles w.r.t x axis
 
-You can perform rostopic echo <topic_name> to display the sensor output
-Wheel odometry is the most accurate amongst these for the scenario in which the data was
-generated. Lidar odometry tends to be noisy and the values it produces are not very reliable.
-Subscribing to the IMU topic provides IMU data.
+
 
 ### Running the ROSBag file 
 ROSBag is ROS's way of recording and storing data in a compressed form. You can create a ROSBag of sensor/actuator message recordings while 
