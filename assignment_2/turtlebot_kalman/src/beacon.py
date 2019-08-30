@@ -18,7 +18,6 @@ from tf.transformations import euler_from_quaternion
 from turtlebot_kalman.msg import BeaconMsg
 import math
 import numpy as np
-import time
 
 
 

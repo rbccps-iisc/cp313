@@ -12,14 +12,15 @@ You are to estimate the position of the turtlebot as it executes this trajectory
 1. rho, the radial distance between the beacon and the turtlebot, and
 2. phi, the angle between turtlebot heading and line joining turtlebot and beacon. The angle is positive when measured in an anti-clockwise direction.
 The beacon gives you the above measurements only when the robot is within a distance of R from it. These measurements also have noise associated with them.
-
+A pictorial description of the problem is given below.
+![Alt text](./docs/turtle.png?raw=true "Gazebo showing the simulated turtlebot and the beacon (cylinder)")
 
 
 ## Assignment
-1. Formulate the motion model of the turtlebot (Newtonian motion model). The model must convert sensor inputs [in its local frame] (vx, w) to global position state variables (x,y,theta). You need to associate noise with the sensor inputs. You can assume that the noise covariance matrix is diagonal.
+1. Formulate the motion model of the turtlebot (Newtonian motion model). The model must convert sensor inputs [in its local frame] (vx, w) (front velocity in x direction of turtle bot, and angular velocity to make it turn(+ve is anticlockwise))  to global position state variables (x,y,theta). You need to associate noise with the sensor inputs. You can assume that the noise covariance matrix is diagonal.
 2. Formulate the measuement model of the beacon. The model must convert measurement of the turtlebot w.r.t the beacon (rho, phi) to the state variable of the turtlebot (x,y,theta). You need to associate noise with the measurements. You can assume that the noise covariance matrix is diagonal.
 3. Use an extended kalman filter to fuse these measurements and provide a better estimate of the state variable (x,y,theta).
-4. Compare it with ground truth (rostopic "/odom")
+4. Compare it with ground truth (rostopic "/odom"), plot the odometry on rViz and the velocities on rqt-plot.
 
 
 ## Assumptions 
@@ -28,21 +29,47 @@ The beacon gives you the above measurements only when the robot is within a dist
 3. You have a catkin_ws (workspace) in /home/<user-name>/catkin_ws
 
 ##  Installation instructions
-1. From this folder, copy the folder turtlebot_kalman to the src folder of your catkin workspace
+1. Install filterpy, which is the library you will use to perform kalman filtering
+```
+sudo pip install filterpy
+```
+More information on how to use this library can be found here
+https://filterpy.readthedocs.io/en/latest/
+Examples can be found here
+https://nbviewer.jupyter.org/github/rlabbe/Kalman-and-Bayesian-Filters-in-Python/blob/master/table_of_contents.ipynb
+2. From this folder, copy the folder turtlebot_kalman to the src folder of your catkin workspace
 ```
 cp -r turtlebot_kalman ~/catkin_ws/src/
 ```
-2. catkin_make the package using the command 
+3. catkin_make the package using the command 
 ```
 cd ~/catkin_ws/
 catkin_make --only-pkg-with-deps turtlebot_kalman
 catkin_make --only-pkg-with-deps turtlebot_kalman install
 source devel/setup.bash
 ```
-3. You should now be able to run this package by 
+4. You should now be able to run this package by 
 ```
 roslaunch turtlebot_kalman turtlebot_beacon.launch
 ```
+Gazebo will now open and show you the turtlebot and a beacon (cylinder) as show
+![Alt text](./docs/gaz.png?raw=true "Gazebo showing the simulated turtlebot and the beacon (cylinder)")
+
+5. You may need to download rqt-plot separately.
+```
+sudo apt-get install ros-kinetic-rqt*
+```
+or
+```
+sudo apt-get install ros-melodic-rqt*
+```
+depending on your distribution.
+Using this, you can plot the velocities, positions etc.
+```
+rqt_plot /noisy_vel
+```
+![Alt text](./docs/vel.png?raw=true "Gazebo showing the simulated turtlebot and the beacon (cylinder)")
+
 
 ## Instructions
 1. Inputs -
@@ -50,34 +77,21 @@ roslaunch turtlebot_kalman turtlebot_beacon.launch
 	b. Ground truth for global position and angle (x,y,Q). Q is a rotationary quaternion. You may use an inbuilt function (see src/beacon.py) to convert this to euler angle. Alternatively, 
 		since this is only used for plotting, you may plot it using rviz.  Subscribe to /odom. 
 	c. Beacon is at position (2,2) and provides all angles w.r.t x axis
+2. Simulation - 
+The simulation is mainly run by two scripts
+    a. ./turtlebot_kalman/src/beacon.py - Controls the RF signals to send to the turtlebot when it reaches close to a threshold. The radial thrshold and the noise variances can be set here
+    b. ./turtlebot_kalman/src/turtlemove.py - Controls the movement of the turtlebot, allowing it to go in a circular path. The sensor input variances (velocity) can be set here
+A launch file is provided in ./turtlebot_kalman/launch which will run the above two scripts for you. 
+3. Custom Message - 
+A custom message for beacon is created for you in ./turtlebot_kalman/msg/BeaconMsg.msg which is a datastructure holding radius and angle as floats. You must necessarily perform step 3. of the installation instruction once and
+source source devel/setup.bash in every terminal where you would be running programs from.
 
 
 
-### Running the ROSBag file 
-ROSBag is ROS's way of recording and storing data in a compressed form. You can create a ROSBag of sensor/actuator message recordings while 
-executing your robot's manoeuvres and collect all sensor/actuator messages recordings. Replaying this bag will be similar to running the real robot, and multiple iterations 
-of trial and error coding can be made.
-(Remember to run roscore on a seperate terminal.)
-First create a virtual static transformation, this will be helpful in plotting the data
-```
-rosrun tf static_transform_publisher 0 0 0 0 0 0 0 odom base_footprint 10
-```
-Now, run the ROSBag, and pause it.
-```
-rosbag play ./data/tbot_lidar_loop.bag
-```
-Subscribe for the data using a simple ROS subscriber. Use code contained in ./code :
-The code is well commented.
-
-## Assignment
-1. Plot live \/odom and \/odom_rf2o on rViz. (Instructions for plotting data on rViz can be found online and is part of the assignment.)
-2. Use the utilities provided by ROS to obtain a time freeze (complete data) from the ROSBag and plot the same using matplotlib.
-3. Considering the above, perform dead reckoning, i.e., 2-D position and pose ![equation](https://latex.codecogs.com/png.latex?2D%20%5C%20%28x%2C%20y%2C%20%5Ctheta%29) estimation, using just the IMU data. Compare with wheel odometry (use matplotlib).
-4. More tasks will be added later.
 
 ## Submission Format
 1. Folder name should be assignment_1_\<your_name\> and should contain folders /code /figures and report.pdf.
 2. Put your code in \/code and the figures should be saved in \/figures.
 3. Make a simple one-page report and store the pdf as report.pdf.
-4. Submissions should be made on Piazza. Send the zip file of the assignment folder.
+4. Submissions should be made on Piazza by mailing to the TA and Instructor. Send the zip file of the assignment folder.
 
