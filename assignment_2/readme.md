@@ -5,20 +5,19 @@
 Note: Please use python2 for this exercise.
 
 ## Introduction
-The folder turtlebot_kalman contains a ros package (rospkg) which when launched opens gazebo with the turtlebot and a Radio-Frequency Beacon initialized.
+The folder turtlebot_kalman contains a ros package (rospkg), which, when launched, opens gazebo with the turtlebot and a Radio-Frequency Beacon initialized.
 The turtlebot initially moves in fixed circle and occassionally approaches the beacon. 
-The turtle bot has a velocity estimating sensor (wheel encoder) which determines its velocity to an extent (with noise). The actual trajectory of the turtlebot is known.
-You are to estimate the position of the turtlebot as it executes this trajectory. Your estimate of the trajectory based only on velocity sensor will be noisy leading to
-a drift in the position estimae over time. You must correct for this drift using the measurements from the beacon. The beacon gives you 
-1. rho, the radial distance between the beacon and the turtlebot
-2. phi, the angle between turtlebot heading and line joining turtlebot and beacon, 
-
+The turtle bot has a velocity estimating sensor (wheel encoder) as well as an angular velocity sensor, which compute its velocity and angular velocity to an extent (with noise). The actual trajectory of the turtlebot (ground truth) is known.
+You are to estimate the position of the turtlebot as it executes this trajectory, based on the velocity and angular velocity inputs. Your prediction of the trajectory based only on velocity and angular velocity sensors will be approximate, and will drift. This can be corrected occasionally based on the measurements from the beacon. The beacon gives you 
+1. rho, the radial distance between the beacon and the turtlebot, and
+2. phi, the angle between turtlebot heading and line joining turtlebot and beacon. The angle is positive when measured in an anti-clockwise direction.
+The beacon gives you the above measurements only when the robot is within a distance of R from it. These measurements also have noise associated with them.
 
 
 
 ## Assignment
-1. Formulate the motion model of the turtlebot (Newtonian motion model). The model must convert sensor inputs [local frame] (vx, w) the line  to global position state variable (x,y,theta)
-2. Formulate the measuement model of the beacon. The model must convert measurement of the turtlebot w.r.t the beacon (rho, phi) to the state variable of the turtlebot (x,y,theta)
+1. Formulate the motion model of the turtlebot (Newtonian motion model). The model must convert sensor inputs [in its local frame] (vx, w) to global position state variables (x,y,theta). You need to associate noise with the sensor inputs. You can assume that the noise covariance matrix is diagonal.
+2. Formulate the measuement model of the beacon. The model must convert measurement of the turtlebot w.r.t the beacon (rho, phi) to the state variable of the turtlebot (x,y,theta). You need to associate noise with the measurements. You can assume that the noise covariance matrix is diagonal.
 3. Use an extended kalman filter to fuse these measurements and provide a better estimate of the state variable (x,y,theta).
 4. Compare it with ground truth (rostopic "/odom")
 
