@@ -92,7 +92,7 @@ source source devel/setup.bash in every terminal where you would be running prog
 
 
 ## Submission Format
-1. Folder name should be assignment_1_\<your_name\> and should contain folders /code /figures and report.pdf.
+1. Folder name should be assignment_2_\<your_name\> and should contain folders /code /figures and report.pdf.
 2. Put your code in \/code and the figures should be saved in \/figures.
 3. Make a simple one-page report and store the pdf as report.pdf.
 4. Submissions should be made on Piazza by mailing to the TA and Instructor. Send the zip file of the assignment folder.
