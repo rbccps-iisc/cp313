@@ -11,7 +11,7 @@ The turtle bot has a velocity estimating sensor (wheel encoder) as well as an an
 You are to estimate the position of the turtlebot as it executes this trajectory, based on the velocity and angular velocity inputs. Your prediction of the trajectory based only on velocity and angular velocity sensors will be approximate, and will drift. This can be corrected occasionally based on the measurements from the beacon. The beacon gives you 
 1. rho, the radial distance between the beacon and the turtlebot, and
 2. phi, the angle between turtlebot heading and line joining turtlebot and beacon. The angle is positive when measured in an anti-clockwise direction.
-The beacon gives you the above measurements only when the robot is within a distance of R from it. These measurements also have noise associated with them.
+The beacon gives you the above measurements only when the robot is within a distance of rho=R from it. These measurements also have noise associated with them.
 A pictorial description of the problem is given below.
 ![Alt text](./docs/turtle.png?raw=true "Gazebo showing the simulated turtlebot and the beacon (cylinder)")
 
