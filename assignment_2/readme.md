@@ -81,8 +81,8 @@ rqt_plot /noisy_vel
 	c. Beacon is at position (2,2) and provides all angles w.r.t x axis
 2. Simulation - 
 The simulation is mainly run by two scripts
-    a. ./turtlebot_kalman/src/beacon.py - Controls the RF signals to send to the turtlebot when it reaches close to a threshold. The radial thrshold and the noise variances can be set here
-    b. ./turtlebot_kalman/src/turtlemove.py - Controls the movement of the turtlebot, allowing it to go in a circular path. The sensor input variances (velocity) can be set here
+    i. ./turtlebot_kalman/src/beacon.py - Controls the RF signals to send to the turtlebot when it reaches close to a threshold. The radial thrshold and the noise variances can be set here
+    ii. ./turtlebot_kalman/src/turtlemove.py - Controls the movement of the turtlebot, allowing it to go in a circular path. The sensor input variances (velocity) can be set here
 A launch file is provided in ./turtlebot_kalman/launch which will run the above two scripts for you. 
 3. Custom Message - 
 A custom message for beacon is created for you in ./turtlebot_kalman/msg/BeaconMsg.msg which is a datastructure holding radius and angle as floats. You must necessarily perform step 3. of the installation instruction once and
