@@ -37,10 +37,12 @@ More information on how to use this library can be found here
 https://filterpy.readthedocs.io/en/latest/
 Examples can be found here
 https://nbviewer.jupyter.org/github/rlabbe/Kalman-and-Bayesian-Filters-in-Python/blob/master/table_of_contents.ipynb
+
 2. From this folder, copy the folder turtlebot_kalman to the src folder of your catkin workspace
 ```
 cp -r turtlebot_kalman ~/catkin_ws/src/
 ```
+
 3. catkin_make the package using the command 
 ```
 cd ~/catkin_ws/
