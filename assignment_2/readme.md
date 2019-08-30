@@ -25,7 +25,7 @@ The beacon gives you the above measurements only when the robot is within a dist
 ## Assumptions 
 1. Assignment 1 is completed
 2. You are able to control the turtlebot in gazebo from a ROS python code
-3. You have a catkin_ws (workspace) in /home/<user-name>/catkin_ws
+3. You have a catkin_ws (workspace) in /home/"user-name"/catkin_ws
 
 ##  Installation instructions
 1. Install filterpy, which is the library you will use to perform kalman filtering
