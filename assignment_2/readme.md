@@ -12,7 +12,6 @@ You are to estimate the position of the turtlebot as it executes this trajectory
 1. rho, the radial distance between the beacon and the turtlebot, and
 2. phi, the angle between turtlebot heading and line joining turtlebot and beacon. The angle is positive when measured in an anti-clockwise direction.
 The beacon gives you the above measurements only when the robot is within a distance of rho=R from it. These measurements also have noise associated with them.
-A pictorial description of the problem is given below.
 ![Alt text](./docs/turtle.png?raw=true "Gazebo showing the simulated turtlebot and the beacon (cylinder)")
 
 
