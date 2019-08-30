@@ -16,8 +16,8 @@ The beacon gives you the above measurements only when the robot is within a dist
 
 
 ## Assignment
-1. Formulate the motion model of the turtlebot (Newtonian motion model). The model must convert sensor inputs [in its local frame] (vx, w) (front velocity in x direction of turtle bot, and angular velocity to make it turn(+ve is anticlockwise))  to global position state variables (x,y,theta). You need to associate noise with the sensor inputs. You can assume that the noise covariance matrix is diagonal.
-2. Formulate the measuement model of the beacon. The model must convert measurement of the turtlebot w.r.t the beacon (rho, phi) to the state variable of the turtlebot (x,y,theta). You need to associate noise with the measurements. You can assume that the noise covariance matrix is diagonal.
+1. Formulate the motion model of the turtlebot (Newtonian motion model). The model must convert sensor inputs [in its local frame] (vx, w) (front velocity in x direction of turtle bot, and angular velocity to make it turn(+ve is anticlockwise))  to global position state variables (x,y,theta). You need to associate noise with the sensor inputs. You can assume that the noise covariance matrix is diagonal. The code ./turtlebot_kalman/src/turtlemove.py shows the standard deviations that have been set.
+2. Formulate the measuement model of the beacon. The model must convert measurement of the turtlebot w.r.t the beacon (rho, phi) to the state variable of the turtlebot (x,y,theta). You need to associate noise with the measurements. You can assume that the noise covariance matrix is diagonal. The code ./turtlebot_kalman/src/beacon.py shows the standard deviations that have been set.
 3. Use an extended kalman filter to fuse these measurements and provide a better estimate of the state variable (x,y,theta).
 4. Compare it with ground truth (rostopic "/odom"), plot the odometry on rViz and the velocities on rqt-plot.
 
