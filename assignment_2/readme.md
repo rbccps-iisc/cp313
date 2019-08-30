@@ -74,8 +74,8 @@ rqt_plot /noisy_vel
 
 ## Instructions
 1. Inputs -
-	a. (vx, w) - turtlebot local frame (linear velocity, counter-clockwise angular velocity). Subscribe to /noisy_vel.
-	b. Ground truth for global position and angle (x,y,Q). Q is a rotationary quaternion. You may use an inbuilt function (see src/beacon.py) to convert this to euler angle. Alternatively, 
+	* (vx, w) - turtlebot local frame (linear velocity, counter-clockwise angular velocity). Subscribe to /noisy_vel.
+	* Ground truth for global position and angle (x,y,Q). Q is a rotationary quaternion. You may use an inbuilt function (see src/beacon.py) to convert this to euler angle. Alternatively, 
 		since this is only used for plotting, you may plot it using rviz.  Subscribe to /odom. 
 	c. Beacon is at position (2,2) and provides all angles w.r.t x axis
 2. Simulation - 
