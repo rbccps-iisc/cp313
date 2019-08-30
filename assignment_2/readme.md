@@ -77,15 +77,16 @@ rqt_plot /noisy_vel
 	* (vx, w) - turtlebot local frame (linear velocity, counter-clockwise angular velocity). Subscribe to /noisy_vel.
 	* Ground truth for global position and angle (x,y,Q). Q is a rotationary quaternion. You may use an inbuilt function (see src/beacon.py) to convert this to euler angle. Alternatively, 
 		since this is only used for plotting, you may plot it using rviz.  Subscribe to /odom. 
-	c. Beacon is at position (2,2) and provides all angles w.r.t x axis
+	* Beacon is at position (2,2) and provides all angles w.r.t x axis
 2. Simulation - 
 The simulation is mainly run by two scripts
-    * ./turtlebot_kalman/src/beacon.py - Controls the RF signals to send to the turtlebot when it reaches close to a threshold. The radial thrshold and the noise variances can be set here
+    * ./turtlebot_kalman/src/beacon.py - Controls the RF signals to send to the turtlebot when it reaches close to a threshold. The radial threshold and the noise variances can be set here
     * ./turtlebot_kalman/src/turtlemove.py - Controls the movement of the turtlebot, allowing it to go in a circular path. The sensor input variances (velocity) can be set here
 A launch file is provided in ./turtlebot_kalman/launch which will run the above two scripts for you. 
 3. Custom Message - 
-A custom message for beacon is created for you in ./turtlebot_kalman/msg/BeaconMsg.msg which is a datastructure holding radius and angle as floats. You must necessarily perform step 3. of the installation instruction once and
+A custom message for beacon is created for you in ./turtlebot_kalman/msg/BeaconMsg.msg which is a data-structure holding radius and angle as floats. You must necessarily perform step 3. of the installation instruction once and
 source source devel/setup.bash in every terminal where you would be running programs from.
+4. An example code has been provided in ./turtlebot_kalman/src/example_subscribe.py which shows you how to subscribe to a message.
 
 
 
