@@ -1,5 +1,5 @@
 # Lab Assignment 2: Use the extended kalman filter to estimate the position of the Turtlebot from noisy sensor input and noisy beacon measrements
-### Due Aug 27, 2019
+### Due Sept 14, 2019
 ### Assignment Link : https://github.com/rbccps-iisc/cp313/tree/master/assignment_2
 
 Note: Please use python2 for this exercise.
