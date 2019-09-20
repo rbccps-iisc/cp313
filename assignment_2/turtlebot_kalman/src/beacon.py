@@ -64,7 +64,7 @@ def odom_cb(data):
                         orientation_q.z, orientation_q.w)
     (roll, pitch, yaw) = euler_from_quaternion(orientation_list)
     ''' phi is '''
-    phi = yaw + np.arctan2(-turtlebot_pos.y + beacon_pos.y, -turtlebot_pos.x + beacon_pos.x)
+    phi = yaw - np.arctan2(-turtlebot_pos.y + beacon_pos.y, -turtlebot_pos.x + beacon_pos.x)
 
 
 rospy.init_node('beacon')
